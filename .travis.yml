@@ -94,11 +94,11 @@ script:
   - ./tiffer -help
   - ./tiffer -version
   - ./tiffer test/*.tif -output all.tif
-  - test `wc -c all.tif` == '2225288 all.tif'
+  - test "`wc -c all.tif`" == '2225288 all.tif'
   - ./tiffer test/*.tif -output noblank.tif -remove-blank
-  - test `wc -c noblank.tif` == '2222368 noblank.tif'
+  - test "`wc -c noblank.tif`" == '2222368 noblank.tif'
   - ./tiffer test/*.tif -clobber -output noblank.tif -remove-blank -remove-pages 2,4,5-9
-  - test `wc -c noblank.tif` == '1580870 noblank.tif'
+  - test "`wc -c noblank.tif`" == '1580870 noblank.tif'
 
 #deploy:
 #  provider: releases
