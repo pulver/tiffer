@@ -9,11 +9,31 @@ A simple tiff concatenation and filter program for C++ demonstration purposes on
 
 ## Compile and Run (on Linux)
 
-   g++ -ltiff src/main.cpp src/args.cpp src/tiffer.cpp -o tiffer
+```bash
+g++ -ltiff src/main.cpp src/args.cpp src/tiffer.cpp -o tiffer
+```
 
-   ./tiffer -help
-   ./tiffer test/*.tif -output all.tif
-   ./tiffer test/*.tif -output noblank.tif -remove-blank
+### Examples
+
+```bash
+./tiffer -help
+./tiffer -version
+```
+
+Concatenate tif files
+```bash
+./tiffer test/*.tif -output all.tif
+```
+
+Concatenate tif files removing blank pages
+```bash
+./tiffer test/*.tif -output noblank.tif -remove-blank
+```
+
+Concatenate tif files removing blank pages, and omit pages 2,4,5-9 from output. Overwrite existing file.
+```bash
+./tiffer test/*.tif -clobber -output noblank.tif -remove-blank -remove-pages 2,4,5-9
+```
 
 
 ## Limitations
