@@ -1,5 +1,4 @@
-language: cpp
-
+language: cpp 
 matrix:
   include:
     - os: linux
@@ -13,7 +12,7 @@ matrix:
           packages:
             - clang-5.0
             - libstdc++-7-dev
-            - libtiff4-dev
+            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILER=clang++-5.0 && CXXSTD=c++17"
     - os: linux
@@ -27,7 +26,7 @@ matrix:
           packages:
             - clang-5.0
             - libstdc++-7-dev
-            - libtiff4-dev
+            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILER=clang++-5.0 && CXXSTD=c++14"
     - os: linux
@@ -41,7 +40,7 @@ matrix:
           packages:
             - clang-5.0
             - libstdc++-7-dev
-            - libtiff4-dev
+            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILER=clang++-5.0 && CXXSTD=c++11"
     - os: linux
@@ -53,7 +52,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-            - libtiff4-dev
+            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++17"
     - os: linux
@@ -65,7 +64,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-            - libtiff4-dev
+            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++14"
     - os: linux
@@ -77,7 +76,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-            - libtiff4-dev
+            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++11"
     - os: osx
@@ -94,12 +93,13 @@ matrix:
         - MATRIX_EVAL="brew update && brew install gcc && brew install libtiff && COMPILER=clang++ && CXXSTD=c++11"
 
 before_install:
+  - ls /usr/lib/libtiff*
+  - ls /usr/lib64/libtiff*
   - eval "${MATRIX_EVAL}"
 
 script:
-  - ls
   - $COMPILER --version
-  - $COMPILER -std=c++11 -ltiff4 -ltiff src/main.cpp src/args.cpp src/tiffer.cpp -o tiffer
+  - $COMPILER -std=c++11 -ltiff src/main.cpp src/args.cpp src/tiffer.cpp -o tiffer
   - ./tiffer
   - ./tiffer -help
   - ./tiffer -version
