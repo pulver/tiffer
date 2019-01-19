@@ -1,5 +1,7 @@
 # tiffer
 
+[![Build Status](https://travis-ci.com/pulver/tiffer.svg?branch=master)](https://travis-ci.com/pulver/tiffer)
+
 A simple tiff concatenation and filter program for C++ demonstration purposes only.
 
 ## Requirements

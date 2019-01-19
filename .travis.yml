@@ -38,39 +38,39 @@ matrix:
             - clang
       env:
         - MATRIX_EVAL="CC=clang && CXX=clang++ && COMPILER=clang++ && CXXSTD=c++11"
-    - os: linux
-      dist: trusty
-      compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++17"
-    - os: linux
-      dist: trusty
-      compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++14"
-    - os: linux
-      dist: trusty
-      compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++
-      env:
-        - MATRIX_EVAL="CC=gcc && CXX=g++ && COMPILER=g++ && CXXSTD=c++11"
+#    - os: linux
+#      dist: trusty
+#      compiler: gcc
+#      addons:
+#        apt:
+#          sources:
+#            - ubuntu-toolchain-r-test
+#          packages:
+#            - g++-7
+#      env:
+#        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++17"
+#    - os: linux
+#      dist: trusty
+#      compiler: gcc
+#      addons:
+#        apt:
+#          sources:
+#            - ubuntu-toolchain-r-test
+#          packages:
+#            - g++-7
+#      env:
+#        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++14"
+#    - os: linux
+#      dist: trusty
+#      compiler: gcc
+#      addons:
+#        apt:
+#          sources:
+#            - ubuntu-toolchain-r-test
+#          packages:
+#            - g++
+#      env:
+#        - MATRIX_EVAL="CC=gcc && CXX=g++ && COMPILER=g++ && CXXSTD=c++11"
     - os: osx
       osx_image: xcode9.3
       env:
@@ -94,11 +94,11 @@ script:
   - ./tiffer -help
   - ./tiffer -version
   - ./tiffer test/*.tif -output all.tif
-  - wc -c all.tif
+  - test `wc -c all.tif` == '2225288 all.tif'
   - ./tiffer test/*.tif -output noblank.tif -remove-blank
-  - wc -c noblank.tif
+  - test `wc -c noblank.tif` == '2222368 noblank.tif'
   - ./tiffer test/*.tif -clobber -output noblank.tif -remove-blank -remove-pages 2,4,5-9
-  - wc -c noblank.tif
+  - test `wc -c noblank.tif` == '1580870 noblank.tif'
 
 #deploy:
 #  provider: releases
