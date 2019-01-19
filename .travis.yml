@@ -40,7 +40,6 @@ matrix:
           packages:
             - clang-5.0
             - libstdc++-7-dev
-            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILER=clang++-5.0 && CXXSTD=c++11"
     - os: linux
@@ -53,8 +52,9 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - g++-7
+            - libtiff-dev
       env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++17"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++17 && LIBRARY_PATH=/usr/lib/x86_64-linux-gnu"
     - os: linux
       dist: trusty
       compiler: gcc
@@ -66,7 +66,7 @@ matrix:
           packages:
             - g++-7
       env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++14"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++14 && LIBRARY_PATH=/usr/lib/x86_64-linux-gnu"
     - os: linux
       dist: trusty
       compiler: gcc
@@ -78,19 +78,19 @@ matrix:
           packages:
             - g++-7
       env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++11"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++11 && LIBRARY_PATH=/usr/lib/x86_64-linux-gnu"
     - os: osx
       osx_image: xcode9.3
       env:
-        - MATRIX_EVAL="brew update && brew install gcc && brew install libtiff && COMPILER=clang++ && CXXSTD=c++1z"
+        - MATRIX_EVAL="brew update && brew install gcc && COMPILER=clang++ && CXXSTD=c++1z"
     - os: osx
       osx_image: xcode9.3
       env:
-        - MATRIX_EVAL="brew update && brew install gcc && brew install libtiff && COMPILER=clang++ && CXXSTD=c++14"
+        - MATRIX_EVAL="brew update && brew install gcc && COMPILER=clang++ && CXXSTD=c++14"
     - os: osx
       osx_image: xcode9.3
       env:
-        - MATRIX_EVAL="brew update && brew install gcc && brew install libtiff && COMPILER=clang++ && CXXSTD=c++11"
+        - MATRIX_EVAL="brew update && brew install gcc && COMPILER=clang++ && CXXSTD=c++11"
 
 before_install:
   - eval "${MATRIX_EVAL}"
@@ -107,3 +107,11 @@ script:
   - wc -c noblank.tif
   - ./tiffer test/*.tif -clobber -output noblank.tif -remove-blank -remove-pages 2,4,5-9
   - wc -c noblank.tif
+
+#deploy:
+#  provider: releases
+#  api_key: "GITHUB OAUTH TOKEN"
+#  file: tiffer
+#  skip_cleanup: true
+#  on:
+#    tags: true
