@@ -99,10 +99,13 @@ before_install:
 script:
   - ls
   - $COMPILER --version
-  - $COMPILER -std=c++11 -ltiff src/main.cpp src/args.cpp src/tiffer.cpp -o tiffer
+  - $COMPILER -std=c++11 -ltiff4 -ltiff src/main.cpp src/args.cpp src/tiffer.cpp -o tiffer
   - ./tiffer
   - ./tiffer -help
   - ./tiffer -version
   - ./tiffer test/*.tif -output all.tif
+  - wc -c all.tif
   - ./tiffer test/*.tif -output noblank.tif -remove-blank
+  - wc -c noblank.tif
   - ./tiffer test/*.tif -clobber -output noblank.tif -remove-blank -remove-pages 2,4,5-9
+  - wc -c noblank.tif
