@@ -93,8 +93,6 @@ matrix:
         - MATRIX_EVAL="brew update && brew install gcc && brew install libtiff && COMPILER=clang++ && CXXSTD=c++11"
 
 before_install:
-  - ls /usr/lib/libtiff*
-  - ls /usr/lib64/libtiff*
   - eval "${MATRIX_EVAL}"
 
 script:
