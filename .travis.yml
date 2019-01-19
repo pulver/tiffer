@@ -13,7 +13,7 @@ matrix:
           packages:
             - clang-5.0
             - libstdc++-7-dev
-            - libtiff-devel
+            - libtiff4-dev
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILER=clang++-5.0 && CXXSTD=c++17"
     - os: linux
@@ -27,7 +27,7 @@ matrix:
           packages:
             - clang-5.0
             - libstdc++-7-dev
-            - libtiff-devel
+            - libtiff4-dev
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILER=clang++-5.0 && CXXSTD=c++14"
     - os: linux
@@ -41,7 +41,7 @@ matrix:
           packages:
             - clang-5.0
             - libstdc++-7-dev
-            - libtiff-devel
+            - libtiff4-dev
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && COMPILER=clang++-5.0 && CXXSTD=c++11"
     - os: linux
@@ -53,6 +53,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
+            - libtiff4-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++17"
     - os: linux
@@ -64,6 +65,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
+            - libtiff4-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++14"
     - os: linux
@@ -75,20 +77,21 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
+            - libtiff4-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++11"
     - os: osx
       osx_image: xcode9.3
       env:
-        - MATRIX_EVAL="brew update && brew install gcc && COMPILER=clang++ && CXXSTD=c++1z"
+        - MATRIX_EVAL="brew update && brew install gcc && brew install libtiff && COMPILER=clang++ && CXXSTD=c++1z"
     - os: osx
       osx_image: xcode9.3
       env:
-        - MATRIX_EVAL="brew update && brew install gcc && COMPILER=clang++ && CXXSTD=c++14"
+        - MATRIX_EVAL="brew update && brew install gcc && brew install libtiff && COMPILER=clang++ && CXXSTD=c++14"
     - os: osx
       osx_image: xcode9.3
       env:
-        - MATRIX_EVAL="brew update && brew install gcc && COMPILER=clang++ && CXXSTD=c++11"
+        - MATRIX_EVAL="brew update && brew install gcc && brew install libtiff && COMPILER=clang++ && CXXSTD=c++11"
 
 before_install:
   - eval "${MATRIX_EVAL}"
