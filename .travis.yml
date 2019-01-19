@@ -53,7 +53,6 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - g++-7
-            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++17"
     - os: linux
@@ -66,7 +65,6 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - g++-7
-            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++14"
     - os: linux
@@ -79,7 +77,6 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - g++-7
-            - libtiff-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && COMPILER=g++-7 && CXXSTD=c++11"
     - os: osx
