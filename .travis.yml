@@ -99,7 +99,7 @@ before_install:
 script:
   - ls
   - $COMPILER --version
-  - $COMPILER -ltiff src/main.cpp src/args.cpp src/tiffer.cpp -o tiffer
+  - $COMPILER -std=c++11 -ltiff src/main.cpp src/args.cpp src/tiffer.cpp -o tiffer
   - ./tiffer
   - ./tiffer -help
   - ./tiffer -version
